@@ -16,11 +16,14 @@ inputs:
   provider:
     description: The pact provider name
     required: true
+  providers-needing-validation:
+    description: List of providers that need validating for this consumer version
+    required: true
 runs:
   using: "composite"
   steps:
     - run: |
-        if [[ "${{ steps.get-providers.outputs.providers-needing-validation }}" != *"${{ inputs.provider }}"* ]]; then
+        if [[ "${{ providers-needing-validation }}" != *"${{ inputs.provider }}"* ]]; then
           echo "All pacts already verified"
           exit 0
         fi

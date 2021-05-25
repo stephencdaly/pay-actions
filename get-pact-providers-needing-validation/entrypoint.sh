@@ -20,10 +20,12 @@ if pacts_already_verified; then
   exit 0
 fi
 
-echo "Providers needing verification: "
+echo "can-i-deploy result:"
 echo "$can_deploy"
 providers=$(echo "$can_deploy" | \
   jq -r '.matrix[] | select(.verificationResult.success != true) | .provider.name ' | \
-  tr '\n' ',' | tr -d '"')
+  tr '\n' ' ' | tr -d '"')
+
+echo "Providers needing verification: $providers"
 
 echo "::set-output name=providers-needing-validation::$providers"
