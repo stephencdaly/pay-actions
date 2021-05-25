@@ -23,7 +23,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        if [[ "${{ providers-needing-validation }}" != *"${{ inputs.provider }}"* ]]; then
+        if [[ "${{ inputs.providers-needing-validation }}" != *"${{ inputs.provider }}"* ]]; then
           echo "All pacts already verified"
           exit 0
         fi
