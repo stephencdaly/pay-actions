@@ -28,7 +28,7 @@ runs:
           exit 0
         fi
 
-        cd ${provider}
+        cd ${{ inputs.provider }}
 
         provider_version="$(git rev-parse HEAD)"
         echo "Provider version: $provider_version"
