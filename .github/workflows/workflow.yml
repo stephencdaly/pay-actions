@@ -1,10 +1,6 @@
-name: Java CI
+name: Pact tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: pull_request
 
 permissions:
   contents: read
@@ -24,7 +20,7 @@ jobs:
           pact-broker-password: ${{ secrets.PactBrokerPassword }}
           consumer: selfservice
           consumer-sha: ${{ github.sha }}
-          pr-id: ${{ github.event.number }}
+          pr-id: ${{ github.event.number }}-test-gha
       - name: Get providers needing verfication
         id: get-providers
         ## These actions will live in a different repository but are added locally for demonstration
