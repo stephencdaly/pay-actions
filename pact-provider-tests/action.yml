@@ -33,6 +33,8 @@ runs:
         provider_version="$(git rev-parse HEAD)"
         echo "Provider version: $provider_version"
 
+        set -x
+
         cat <<'EOF' >settings.xml
         <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -41,6 +43,10 @@ runs:
               <localRepository>${env.MAVEN_REPO}</localRepository>
         </settings>
         EOF
+
+        cat settings.xml
+
+        set +x
 
         export MAVEN_REPO="$PWD/.m2"
         echo "$MAVEN_REPO"
