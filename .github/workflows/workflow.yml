@@ -54,7 +54,7 @@ jobs:
           repository: alphagov/pay-ledger
           path: ledger
       - name: Run pact provider tests
-        uses: ./pact-provider-tests@main
+        uses: ./pact-provider-tests
         with:
           pact-broker-username: ${{ secrets.PactBrokerUsername }}
           pact-broker-password: ${{ secrets.PactBrokerPassword }}
