@@ -46,7 +46,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ledger/.m2
-          key: ${{ runner.os }}-ledger-m2-${{ hashFiles('${GITHUB_WORKSPACE}/ledger/pom.xml') }}
+          key: ${{ runner.os }}-ledger-m2-${{ hashFiles('**/ledger/pom.xml') }}
           restore-keys: ${{ runner.os }}-ledger-m2
       - name: Checkout ledger master
         uses: actions/checkout@v2
