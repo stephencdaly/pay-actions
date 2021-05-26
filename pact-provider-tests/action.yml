@@ -14,7 +14,7 @@ inputs:
     description: The tag for consumer pact file to check for providers needing validation against
     required: true
   provider:
-    description: The pact provider name
+    description: The pact provider name. This is also the name of the directory the provider repository should be checked out into.
     required: true
   providers-needing-validation:
     description: List of providers that need validating for this consumer version
@@ -28,10 +28,21 @@ runs:
           exit 0
         fi
 
-        cd ledger
+        cd ${provider}
 
         provider_version="$(git rev-parse HEAD)"
         echo "Provider version: $provider_version"
+
+        cat <<'EOF' >settings.xml
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                                  https://maven.apache.org/xsd/settings-1.0.0.xsd">
+              <localRepository>${env.MAVEN_REPO}</localRepository>
+        </settings>
+        EOF
+
+        export MAVEN_REPO="$PWD/.m2"
 
         mvn test \
           -DrunContractTests \
