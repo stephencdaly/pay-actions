@@ -33,8 +33,6 @@ runs:
         provider_version="$(git rev-parse HEAD)"
         echo "Provider version: $provider_version"
 
-        set -x
-
         cat <<EOF > ~/.m2/settings.xml
         <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -43,14 +41,6 @@ runs:
               <localRepository>$PWD/.m2</localRepository>
         </settings>
         EOF
-
-        cat ~/.m2/settings.xml
-
-        export MAVEN_REPO="$PWD/.m2"
-        echo "$MAVEN_REPO"
-        echo $(ls $PWD/.m2)
-
-        set +x
 
         mvn test \
           -DrunContractTests \
