@@ -55,4 +55,6 @@ runs:
           -DPACT_BROKER_HOST="pay-pact-broker.cloudapps.digital" \
           -DPACT_BROKER_USERNAME="${{ inputs.pact-broker-username }}" \
           -DPACT_BROKER_PASSWORD="${{ inputs.pact-broker-password }}"
+
+        echo $(ls $PWD/.m2)
       shell: bash
