@@ -20,7 +20,7 @@ jobs:
       - name: Get providers needing verfication
         id: get-providers
         ## These actions will live in a different repository but are added locally for demonstration
-        uses: ./actions/get-pact-providers-needing-validation
+        uses: ./get-pact-providers-needing-validation
         with:
           pact-broker-username: ${{ secrets.PactBrokerUsername }}
           pact-broker-password: ${{ secrets.PactBrokerPassword }}
@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-ledger-m2-${{ hashFiles('ledger/pom.xml') }}
           restore-keys: ${{ runner.os }}-ledger-m2
       - name: Run pact provider tests
-        uses: ./actions/pact-provider-tests
+        uses: ./pact-provider-tests
         with:
           pact-broker-username: ${{ secrets.PactBrokerUsername }}
           pact-broker-password: ${{ secrets.PactBrokerPassword }}
@@ -65,7 +65,7 @@ jobs:
           key: ${{ runner.os }}-adminusers-m2-${{ hashFiles('adminusers/pom.xml') }}
           restore-keys: ${{ runner.os }}-adminusers-m2
       - name: Run pact provider tests
-        uses: ./actions/pact-provider-tests
+        uses: ./pact-provider-tests
         with:
           pact-broker-username: ${{ secrets.PactBrokerUsername }}
           pact-broker-password: ${{ secrets.PactBrokerPassword }}
