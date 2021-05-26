@@ -35,9 +35,7 @@ runs:
 
         set -x
 
-        mkdir $PWD/.m2
-
-        cat <<EOF >settings.xml
+        cat <<EOF > ~/.m2/settings.xml
         <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
@@ -46,7 +44,7 @@ runs:
         </settings>
         EOF
 
-        cat settings.xml
+        cat ~/.m2/settings.xml
 
         export MAVEN_REPO="$PWD/.m2"
         echo "$MAVEN_REPO"
