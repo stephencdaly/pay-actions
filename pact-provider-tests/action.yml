@@ -43,6 +43,7 @@ runs:
         EOF
 
         export MAVEN_REPO="$PWD/.m2"
+        echo "$MAVEN_REPO"
 
         mvn test \
           -DrunContractTests \
