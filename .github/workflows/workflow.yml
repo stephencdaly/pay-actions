@@ -17,6 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Publish pacts
+        uses: ./publish-pacts
+        with:
+          pact-broker-username: ${{ secrets.PactBrokerUsername }}
+          pact-broker-password: ${{ secrets.PactBrokerPassword }}
+          consumer: selfservice
+          consumer-sha: ${{ github.sha }}
+          pr-id: ${{ github.event.number }}
       - name: Get providers needing verfication
         id: get-providers
         ## These actions will live in a different repository but are added locally for demonstration
