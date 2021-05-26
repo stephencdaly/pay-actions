@@ -40,17 +40,17 @@ runs:
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                                   https://maven.apache.org/xsd/settings-1.0.0.xsd">
-              <localRepository>${env.MAVEN_REPO}</localRepository>
+              <localRepository>$PWD/.m2</localRepository>
         </settings>
         EOF
 
         cat settings.xml
 
-        set +x
-
         export MAVEN_REPO="$PWD/.m2"
         echo "$MAVEN_REPO"
         echo $(ls $PWD/.m2)
+
+        set +x
 
         mvn test \
           -DrunContractTests \
