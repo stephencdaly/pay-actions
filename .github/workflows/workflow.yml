@@ -42,17 +42,17 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Checkout ledger master
+        uses: actions/checkout@v2
+        with:
+          repository: alphagov/pay-ledger
+          path: ledger
       - name: Cache Ledger Maven packages
         uses: actions/cache@v2
         with:
           path: ledger/.m2
           key: ${{ runner.os }}-ledger-m2-${{ hashFiles('ledger/pom.xml') }}
           restore-keys: ${{ runner.os }}-ledger-m2
-      - name: Checkout ledger master
-        uses: actions/checkout@v2
-        with:
-          repository: alphagov/pay-ledger
-          path: ledger
       - name: Run pact provider tests
         uses: ./pact-provider-tests
         with:
