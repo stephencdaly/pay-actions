@@ -33,6 +33,7 @@ runs:
         provider_version="$(git rev-parse HEAD)"
         echo "Provider version: $provider_version"
 
+        # Use dedicated local maven repository for this provider so we can cache dependencies.
         cat <<EOF > ~/.m2/settings.xml
         <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,5 +53,5 @@ runs:
           -DPACT_BROKER_USERNAME="${{ inputs.pact-broker-username }}" \
           -DPACT_BROKER_PASSWORD="${{ inputs.pact-broker-password }}"
 
-        echo $(ls $PWD/.m2)
+        rm ~/.m2/settings.xml
       shell: bash
