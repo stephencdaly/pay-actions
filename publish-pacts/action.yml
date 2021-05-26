@@ -13,9 +13,6 @@ inputs:
   consumer-sha:
     description: The SHA of the consumer commit
     required: true
-  provider:
-    description: The pact provider name
-    required: true
   pr-id:
     description: The ID of the PR to tag the pact with
     required: true
@@ -30,7 +27,7 @@ runs:
           curl -v --fail -X PUT -H "Content-Type: application/json" \
           -d@"$pact" \
           --user ${{ inputs.pact-broker-username }}:${{ inputs.pact-broker-password }} \
-          https://pay-pact-broker.cloudapps.digital/pacts/provider/"${{ inputs.provider }}"/consumer/"${{ inputs.consumer }}"/version/"${{ inputs.consumer-sha }}"
+          https://pay-pact-broker.cloudapps.digital/pacts/provider/"${provider_name}"/consumer/"${{ inputs.consumer }}"/version/"${{ inputs.consumer-sha }}"
           
           curl -v --fail -X PUT -H "Content-Type: application/json" \
           --user ${{ inputs.pact-broker-username }}:${{ inputs.pact-broker-password }} \
